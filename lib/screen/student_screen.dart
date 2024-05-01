@@ -26,56 +26,49 @@ class _StudentDetailsState extends State<StudentDetails> {
       appBar: AppBar(
         title: const Text("Students Details"),
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              MyTextFormField(
-                  onChanged: (value) {
-                    first = value;
-                  },
-                  text: 'First Name'),
-              gap,
-              MyTextFormField(
-                  onChanged: (value) {
-                    first = value;
-                  },
-                  text: 'Last Name'),
-              gap,
-              MyTextFormField(
-                  onChanged: (value) {
-                    first = value;
-                  },
-                  text: 'Address'),
-              gap,
-              MyButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      setState(() {
-                        {
-                          studentModel = StudentModel(
-                              fname: first!, lname: second!, address: address!);
-                        }
-                        result = studentModel!.save();
-                      });
-                    }
-                  },
-                  text: "Save"),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  height: 100,
-                  width: double.infinity,
-                  color: Colors.amber,
-                  child: Center(
-                      child: Text(
-                    "$result",
-                  )),
-                ),
-              )
-            ],
-          ),
+      body: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            MyTextFormField(
+                onChanged: (value) {
+                  first = value;
+                },
+                text: 'First Name'),
+            gap,
+            MyTextFormField(
+                onChanged: (value) {
+                  second = value;
+                },
+                text: 'Last Name'),
+            gap,
+            MyTextFormField(
+                onChanged: (value) {
+                  address = value;
+                },
+                text: 'Address'),
+            gap,
+            MyButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    setState(() {
+                      {
+                        studentModel = StudentModel(
+                            fname: first!, lname: second!, address: address!);
+                      }
+                      result = studentModel!.save();
+                    });
+                  }
+                },
+                text: "Save"),
+            gap,
+            Container(
+              color: Colors.green,
+              height: 100,
+              width: double.infinity,
+              child: Text("$result"),
+            )
+          ],
         ),
       ),
     );
