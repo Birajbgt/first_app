@@ -26,44 +26,56 @@ class _StudentDetailsState extends State<StudentDetails> {
       appBar: AppBar(
         title: const Text("Students Details"),
       ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            MyTextFormField(
-                onChanged: (value) {
-                  first = value;
-                },
-                text: 'First Name'),
-            gap,
-            MyTextFormField(
-                onChanged: (value) {
-                  first = value;
-                },
-                text: 'Last Name'),
-            gap,
-            MyTextFormField(
-                onChanged: (value) {
-                  first = value;
-                },
-                text: 'Address'),
-            gap,
-            MyButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    setState(() {
-                      {
-                        studentModel = StudentModel(
-                            fname: first!, lname: second!, address: address!);
-                      }
-                      result = studentModel!.save();
-                    });
-                  }
-                },
-                text: "Save"),
-            gap,
-            Text("$result"),
-          ],
+      body: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              MyTextFormField(
+                  onChanged: (value) {
+                    first = value;
+                  },
+                  text: 'First Name'),
+              gap,
+              MyTextFormField(
+                  onChanged: (value) {
+                    first = value;
+                  },
+                  text: 'Last Name'),
+              gap,
+              MyTextFormField(
+                  onChanged: (value) {
+                    first = value;
+                  },
+                  text: 'Address'),
+              gap,
+              MyButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      setState(() {
+                        {
+                          studentModel = StudentModel(
+                              fname: first!, lname: second!, address: address!);
+                        }
+                        result = studentModel!.save();
+                      });
+                    }
+                  },
+                  text: "Save"),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: 100,
+                  width: double.infinity,
+                  color: Colors.amber,
+                  child: Center(
+                      child: Text(
+                    "$result",
+                  )),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
